@@ -18,3 +18,12 @@ Route::get('/', function () {
     $result = DB::table('categories')->get();
     return view('welcome',['categories'=>$result]);
 });
+
+Route::get('/product/{category}', function ($category = null) {
+    if($category == null){
+        $result = DB::table('products')->get();
+    }else{
+        $result = DB::table('products')->where('category_id','=',$category)->get();
+    }
+    return view('product',['products'=>$result]);
+});

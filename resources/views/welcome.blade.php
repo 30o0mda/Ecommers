@@ -17,7 +17,7 @@
                     <div class="col-lg-4 col-md-6 text-center">
                         <div class="single-product-item">
                             <div class="product-image">
-                                <a href="/product/{{ $category -> id }}"><img src="{{ url($category -> image_path) }}"
+                                <a href="/product/{{ $category -> id }}"><img src="{{ isset($category->image_path) ? url($category->image_path) : '' }}"
                                     style="width: 200px; height: 200px;"
                                         alt=""></a>
                             </div>

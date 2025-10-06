@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\FirstController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $result = DB::table('categories')->get();
-    return view('welcome',['categories'=>$result]);
-});
+Route::get('/',[FirstController::class,'MainPage'] );
 
-Route::get('/product/{category}', function ($category = null) {
-    if($category == null){
-        $result = DB::table('products')->get();
-    }else{
-        $result = DB::table('products')->where('category_id','=',$category)->get();
-    }
-    return view('product',['products'=>$result]);
-});
+Route::get('/product/{cat_id?}',[ProductController::class,'GetCategoryProducts'] );
+
+Route::get('/category', [FirstController::class,'GetAllCategoriesWithProduct']);
+
+Route::get('/addproduct',[ProductController::class,'AddProduct']);

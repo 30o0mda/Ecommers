@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="section-title">
-                        <h3><span class="orange-text">Add</span> Products</h3>
+                        <h3><span class="orange-text">Edit</span> Products</h3>
                         <p></p>
                     </div>
                 </div>
@@ -17,17 +17,9 @@
                     </div>
                     <div id="form_status"></div>
                     <div class="contact-form">
-                        <form method="post" action="/storeprouduct">
+                        <form method="post" action="/updateproduct">
+                            <input type="hidden" name="pro_id" value="{{ $product->id ?? '' }}">
                             @csrf()
-                            {{-- @if ($errors->any())
-                                <div style="color: red;">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif --}}
                             @if ($errors->any())
                                 <table
                                     style="width: 100%; border: 1px solid rgb(0, 0, 0); background-color: #070000; color: rgb(197, 23, 23); margin-bottom: 20px;">
@@ -46,18 +38,18 @@
                                 </table>
                             @endif
                             <p>
+                                <img src="{{ asset($product->image_path) }}" style="width: 150px;height: 150px">
+                            </p>
+                            <p>
                                 <input type="text" style="width: 100%" required placeholder="Name" name="name"
-                                    id="name" value="{{ old('name') }}">
+                                    id="name" value="{{ $product->name }}">
                             </p>
-                            <p style="display: flex">
-                                <input type="text" style="width: 100%" class="" placeholder="Image_path"
-                                    name="image_path" required id="image_path" value="{{ old('image_path') }}">
-                            </p>
+
                             <p style="display: flex">
                                 <input type="number" style="width: 50%" placeholder="Price" class="mr-4" name="price"
-                                    id="price" required value="{{ old('price') }}">
+                                    id="price" required value="{{ $product->price }}">
                                 <input type="number" required style="width: 50%" placeholder="Quantity" name="quantity"
-                                    id="quantity" value="{{ old('quantity') }}">
+                                    id="quantity" value="{{ $product->quantity }}">
                             </p>
                             <div class="form-group">
                                 <select name="category_id" id="category_id" required class="form-control"
@@ -65,16 +57,21 @@
                                     <option value="">-- Select Category --</option>
                                     @foreach ($allcategories as $category)
                                         <option value="{{ $category->id }}"
-                                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                            {{ $product->category_id == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
                             <p>
-                                <textarea name="description" id="description" cols="50" rows="10" required placeholder="Description">{{ old('description') }}</textarea>
+                                <textarea name="description" id="description" cols="50" rows="10" required placeholder="Description">{{ $product->description }}</textarea>
                             </p>
-                            <p><input type="submit" value="Submit"></p>
+                            <p>
+
+                            </p>
+                            <p>
+                                <input type="submit" value="Update">
+                            </p>
                         </form>
                     </div>
                 </div>

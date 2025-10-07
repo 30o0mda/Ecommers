@@ -1,11 +1,12 @@
 @extends('Layouts.master')
+
 @section('content')
     <div class="product-section mt-150 mb-150">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="section-title">
-                        <h3><span class="orange-text">Add</span> Products</h3>
+                        <h3><span class="orange-text">Add</span> Review</h3>
                         <p></p>
                     </div>
                 </div>
@@ -17,7 +18,7 @@
                     </div>
                     <div id="form_status"></div>
                     <div class="contact-form">
-                        <form method="post" action="/storeprouduct">
+                        <form method="post" action="/storereview">
                             @csrf()
                             {{-- @if ($errors->any())
                                 <div style="color: red;">
@@ -45,34 +46,20 @@
                                     </tbody>
                                 </table>
                             @endif
-                            <p>
-                                <input type="text" style="width: 100%" required placeholder="Name" name="name"
-                                    id="name" value="{{ old('name') }}">
+                            <p style="display: flex">
+                                <input type="text" style="width: 50%" class="mr-4" placeholder="name" name="name"
+                                    required id="name" value="{{ old('name') }}">
+                                <input type="text" style="width: 50%" placeholder="phone" class="" name="phone"
+                                    id="phone" required value="{{ old('phone') }}">
                             </p>
                             <p style="display: flex">
-                                <input type="text" style="width: 100%" class="" placeholder="Image_path"
-                                    name="image_path" required id="image_path" value="{{ old('image_path') }}">
+                                <input type="text" style="width: 50%" class="mr-4" placeholder="email" name="email"
+                                    required id="email" value="{{ old('email') }}">
+                                <input type="text" style="width: 50%" placeholder="subject" class="" name="subject"
+                                    id="subject" required value="{{ old('subject') }}">
                             </p>
-                            <p style="display: flex">
-                                <input type="number" style="width: 50%" placeholder="Price" class="mr-4" name="price"
-                                    id="price" required value="{{ old('price') }}">
-                                <input type="number" required style="width: 50%" placeholder="Quantity" name="quantity"
-                                    id="quantity" value="{{ old('quantity') }}">
-                            </p>
-                            <div class="form-group">
-                                <select name="category_id" id="category_id" required class="form-control"
-                                    style="width: 100%;">
-                                    <option value="">-- Select Category --</option>
-                                    @foreach ($allcategories as $category)
-                                        <option value="{{ $category->id }}"
-                                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
                             <p>
-                                <textarea name="description" id="description" cols="50" rows="10" required placeholder="Description">{{ old('description') }}</textarea>
+                                <textarea name="review" id="review" cols="50" rows="10" required placeholder="review">{{ old('review') }}</textarea>
                             </p>
                             <p><input type="submit" value="Submit"></p>
                         </form>
@@ -82,4 +69,32 @@
             </div>
         </div>
     </div>
+    <!-- testimonail-section -->
+     <div class="testimonail-section mt-80 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 text-center">
+                    <div class="testimonial-sliders">
+                        @foreach ($reviews as $review)
+                            <div class="single-testimonial-slider">
+                                <div class="client-avater">
+                                    <img src="assets/img/avaters/avatar3.png" alt="">
+                                </div>
+                                <div class="client-meta">
+                                    <h3>{{ $review->name }} <span>{{ $review->subject }}</span></h3>
+                                    <p class="testimonial-body">
+                                        " {{ $review->review }} "
+                                    </p>
+                                    <div class="last-icon">
+                                        <i class="fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end testimonail-section -->
 @endsection

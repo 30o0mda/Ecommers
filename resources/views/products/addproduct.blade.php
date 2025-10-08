@@ -1,4 +1,4 @@
-@extends('Layouts.master')
+@extends('layouts.master')
 @section('content')
     <div class="product-section mt-150 mb-150">
         <div class="container">
@@ -17,7 +17,7 @@
                     </div>
                     <div id="form_status"></div>
                     <div class="contact-form">
-                        <form method="post" action="/storeprouduct">
+                        <form method="post" enctype="multipart/form-data" action="/storeproduct">
                             @csrf()
                             {{-- @if ($errors->any())
                                 <div style="color: red;">
@@ -50,7 +50,7 @@
                                     id="name" value="{{ old('name') }}">
                             </p>
                             <p style="display: flex">
-                                <input type="text" style="width: 100%" class="" placeholder="Image_path"
+                                <input type="file" style="width: 100%" class="form-control" placeholder="Image_path"
                                     name="image_path" required id="image_path" value="{{ old('image_path') }}">
                             </p>
                             <p style="display: flex">

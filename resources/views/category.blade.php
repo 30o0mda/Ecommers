@@ -1,4 +1,4 @@
-@extends('Layouts.master')
+@extends('layouts.master')
 @section('content')
     <!-- products -->
     <div class="product-section mt-150 mb-150">

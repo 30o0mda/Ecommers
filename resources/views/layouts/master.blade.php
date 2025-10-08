@@ -33,6 +33,9 @@
     <!-- responsive -->
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 
+{{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+</head>
+
     <style>
         .subtitle {
             letter-spacing: 0px !important;
@@ -73,7 +76,9 @@
                                 </li>
                                 <li><a href="/product">المنتجات</a></li>
                                 <li><a href="/category">الاقسام</a></li>
-                                <li><a href="/">من نحن</a></li>
+                                <li><a href="/addproduct">اضافه منتج</a></li>
+                                <li><a href="/reviews">اراء العملاء</a></li>
+                                <li><a href="/reviews">من نحن</a></li>
                                 <li><a href="#">الصفحات</a>
                                     <ul class="sub-menu">
                                         <li><a href="404.html">404 page</a></li>
@@ -85,21 +90,39 @@
                                         <li><a href="shop.html">Shop</a></li>
                                     </ul>
                                 </li>
-                                {{-- <li><a href="news.html">News</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="news.html">News</a></li>
-                                        <li><a href="single-news.html">Single News</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="shop.html">Shop</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop.html">Shop</a></li>
-                                        <li><a href="checkout.html">Check Out</a></li>
-                                        <li><a href="single-product.html">Single Product</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                    </ul>
-                                </li> --}}
+
+                                @guest
+                                    @if (Route::has('login'))
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        </li>
+                                    @endif
+                                    @if (Route::has('register'))
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        </li>
+                                    @endif
+                                @else
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
+                                @endguest
+
                                 <li>
                                     <div class="header-icons">
                                         <a class="shopping-cart" href="cart.html"><i
@@ -129,8 +152,11 @@
                     <div class="search-bar">
                         <div class="search-bar-tablecell">
                             <h3>Search For:</h3>
-                            <input type="text" placeholder="Keywords">
-                            <button type="submit">Search <i class="fas fa-search"></i></button>
+                            <form method="post" action="/search">
+                                @csrf
+                                <input type="text" name="search" placeholder="Keywords">
+                                <button type="submit">Search <i class="fas fa-search"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -168,7 +194,7 @@
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
                                 <p class="subtitle">توصيل باقل الاسعار ختي باب المنزل</p>
-                                <h1>100% ماكولات طيبه   </h1>
+                                <h1>100% ماكولات طيبه </h1>
                                 <div class="hero-btns">
                                     <a href="shop.html" class="boxed-btn">سجل معنا</a>
                                     <a href="contact.html" class="bordered-btn">تواصل معنا</a>
@@ -261,7 +287,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12">
-                    <p>حقوق الموقع محفوظه لدي موقع &copy; 2025 - <a href="https://imransdesign.com/">Imran Hossain</a>, All Rights
+                    <p>حقوق الموقع محفوظه لدي موقع &copy; 2025 - <a href="https://imransdesign.com/">Imran Hossain</a>,
+                        All Rights
                         Reserved.<br>
                         Distributed By - <a href="https://themewagon.com/">Themewagon</a>
                     </p>

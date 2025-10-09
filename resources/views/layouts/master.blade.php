@@ -33,14 +33,18 @@
     <!-- responsive -->
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 
-{{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 
-    <style>
-        .subtitle {
-            letter-spacing: 0px !important;
-        }
-    </style>
+<style>
+    .subtitle {
+        letter-spacing: 0px !important;
+    }
+
+    .update_href {
+        color: #F28123 !important;
+    }
+</style>
 
 </head>
 
@@ -104,13 +108,13 @@
                                     @endif
                                 @else
                                     <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
-                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" v-pre>
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#"
+                                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            v-pre>
                                             {{ Auth::user()->name }}
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                            <a class="dropdown-item update_href" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
@@ -311,24 +315,24 @@
 
     <!-- jquery -->
     <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
-    <!-- bootstrap -->
+
+    <!-- popper (لـ Bootstrap 4) -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- bootstrap js (الإصدار 4) -->
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-    <!-- count down -->
+
+    <!-- باقي سكريبتات القالب -->
     <script src="{{ asset('assets/js/jquery.countdown.js') }}"></script>
-    <!-- isotope -->
     <script src="{{ asset('assets/js/jquery.isotope-3.0.6.min.js') }}"></script>
-    <!-- waypoints -->
     <script src="{{ asset('assets/js/waypoints.js') }}"></script>
-    <!-- owl carousel -->
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-    <!-- magnific popup -->
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <!-- mean menu -->
     <script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
-    <!-- sticker js -->
     <script src="{{ asset('assets/js/sticker.js') }}"></script>
-    <!-- main js -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+
 
 </body>
 

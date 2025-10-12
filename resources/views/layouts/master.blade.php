@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <!-- responsive -->
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 
@@ -317,7 +317,10 @@
 
     <!-- jquery -->
     <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-MXe5EK5gyK+fbhwQy/dukwz9fw71HZcsM4KsyDBDTvMyjymkiO0M5qqU0lF4vqLI4VnKf1+DIKf1GM6RFkO8PA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
     <!-- popper (لـ Bootstrap 4) -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 

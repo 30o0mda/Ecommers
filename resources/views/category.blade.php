@@ -79,9 +79,9 @@
                             <div class="col-lg-4 col-md-6 text-center _{{ $product->category_id }}">
                                 <div class="single-product-item">
                                     <div class="product-image">
-                                        <a href="single-product.html">
-                                            <img src="{{ $product->image_path }}" style="height: 250px;width: 250px"
-                                                alt="">
+                                        <a href="{{ url('/showproduct/' . $product->id) }}">
+                                            <img src="{{ isset($product->image_path) ? url($product->image_path) : '' }}"
+                                                alt="" style="height: 200px;width: 200px">
                                         </a>
                                     </div>
                                     <h3>{{ $product->name }}</h3>

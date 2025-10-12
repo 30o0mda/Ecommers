@@ -19,15 +19,6 @@
                     <div class="contact-form">
                         <form method="post" enctype="multipart/form-data" action="/storeproduct">
                             @csrf()
-                            {{-- @if ($errors->any())
-                                <div style="color: red;">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif --}}
                             @if ($errors->any())
                                 <table
                                     style="width: 100%; border: 1px solid rgb(0, 0, 0); background-color: #070000; color: rgb(197, 23, 23); margin-bottom: 20px;">

@@ -48,6 +48,9 @@ Route::get('/removeproduct/{pro_id?}',[ProductController::class,'RemoveProduct']
 
 //product table
 Route::get('/producttable',[ProductController::class,'ProductTable'] );
+Route::get('/addimagetoproduct/{pro_id?}',[ProductController::class,'AddImageToProduct'] );
+Route::post('/storeproductimage',[ProductController::class,'StoreProductImage'] );
+Route::get('/removeproductimage/{img_id?}',[ProductController::class,'RemoveProductImage'] );
 // cart
 Route::get('/cart',[CartController::class,'CartPage'] )->middleware('auth');
 Route::get('/addtocart/{pro_id}',[CartController::class,'AddToCart'] )->middleware('auth');

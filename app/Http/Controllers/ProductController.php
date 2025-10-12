@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -144,6 +145,47 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return view('products.producttable', ['products' => $products]);
+    }
+
+    public function AddImageToProduct($pro_id=null)
+    {
+        $product = Product::find($pro_id);
+        $productImages = ProductImage::where('product_id', $pro_id)->get();
+        return view('products.addimagetoproduct', ['product' => $product, 'productImages' => $productImages, 'pro_id' => $pro_id]);
+    }
+    public function StoreProductImage(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $productImage = new ProductImage();
+        $productImage->product_id = $request->product_id;
+
+        if ($request->hasFile('image_path')) {
+            $image = $request->file('image_path');
+            $path = $image->store('product_images', [
+                'disk' => 'public',
+            ]);
+            $productImage->image_path = 'storage/' . $path;
+        }
+
+        $productImage->save();
+        return redirect()->back()->with('success', 'Image added to product successfully.');
+    }
+    public function RemoveProductImage($img_id = null)
+    {
+        if ($img_id != null) {
+            $image = ProductImage::find($img_id);
+            if ($image) {
+                if ($image->image_path && file_exists(public_path($image->image_path))) {
+                    unlink(public_path($image->image_path));
+                }
+                $image->delete();
+            }
+        }
+        return redirect()->back();
     }
 
 

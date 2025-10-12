@@ -11,9 +11,9 @@ class ProductController extends Controller
     public function Products($cat_id = null)
     {
         if ($cat_id == null) {
-            $result = Product::get();
+            $result = Product::paginate(9);
         } else {
-            $result = Product::where('category_id', '=', $cat_id)->get();
+            $result = Product::where('category_id', '=', $cat_id)->paginate(9);
         }
         return view('product', ['products' => $result]);
     }
@@ -50,21 +50,6 @@ class ProductController extends Controller
         $product->save();
         return redirect('/product');
     }
-
-    // public function ShowProduct(Request $request)
-    // {
-    //     $pro_id = $request->input('pro_id');
-    //     if ($pro_id) {
-    //         $product = Product::find($pro_id);
-    //         if ($product) {
-    //             return view('products.showproduct', ['product' => $product]);
-    //         } else {
-    //             return redirect('/product')->with('error', 'Product not found.');
-    //         }
-    //     } else {
-    //         return redirect('/product')->with('error', 'Product ID is required.');
-    //     }
-    // }
     public function ShowProduct($pro_id)
     {
         if ($pro_id) {
@@ -131,7 +116,7 @@ class ProductController extends Controller
     public function SearchProduct(Request $request)
     {
         $search = $request->input('search');
-        $result = Product::where('name', 'LIKE', '%' . $search . '%')->get();
+        $result = Product::where('name', 'LIKE', '%' . $search . '%')->paginate(10);
         // dd($result);
         if ($result->isEmpty()) {
             return redirect()->route('product')->with('error', 'No products found matching your search criteria.');

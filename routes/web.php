@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -44,6 +45,11 @@ Route::post('/updateproduct',[ProductController::class,'UpdateProduct']);
 Route::get('/editproduct/{pro_id?}',[ProductController::class,'EditProduct']);
 Route::post('/search',[ProductController::class,'SearchProduct']);
 Route::get('/removeproduct/{pro_id?}',[ProductController::class,'RemoveProduct']);
+// cart
+Route::get('/cart',[CartController::class,'CartPage'] )->middleware('auth');
+Route::get('/addtocart/{pro_id}',[CartController::class,'AddToCart'] )->middleware('auth');
+Route::get('/removecart/{cart_id?}',[CartController::class,'RemoveCart'] )->middleware('auth');
+Route::post('/updatecart',[CartController::class,'UpdateCart'] )->middleware('auth');
 //reviews
 Route::get('/reviews',[ReviewController::class,'AllReviews'] );
 Route::post('/storereview',[ReviewController::class,'StoreReview'] );

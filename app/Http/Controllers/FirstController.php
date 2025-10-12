@@ -16,7 +16,8 @@ class FirstController extends Controller
 
     public function GetAllCategoriesWithProduct() {
     $result = Category::all();
-    $result2 = Product::all();
+    
+    $result2 = Product::paginate(9);
     return view('category',['categories'=>$result , 'products'=>$result2]);
 }
 }

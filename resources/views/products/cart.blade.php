@@ -38,11 +38,9 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-
                         </table>
                     </div>
                 </div>
-
                 <div class="col-lg-4">
                     <div class="total-section">
                         <table class="total-table">
@@ -81,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let quantity = parseInt(input.value, 10);
         if (isNaN(quantity) || quantity < 1) {
             quantity = 1;
-            input.value = 1; 
+            input.value = 1;
         }
         const productTotal = price * quantity;
         const totalCell = row.querySelector('.product-total');

@@ -45,6 +45,9 @@ Route::post('/updateproduct',[ProductController::class,'UpdateProduct']);
 Route::get('/editproduct/{pro_id?}',[ProductController::class,'EditProduct']);
 Route::post('/search',[ProductController::class,'SearchProduct']);
 Route::get('/removeproduct/{pro_id?}',[ProductController::class,'RemoveProduct']);
+
+//product table
+Route::get('/producttable',[ProductController::class,'ProductTable'] );
 // cart
 Route::get('/cart',[CartController::class,'CartPage'] )->middleware('auth');
 Route::get('/addtocart/{pro_id}',[CartController::class,'AddToCart'] )->middleware('auth');

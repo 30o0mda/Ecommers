@@ -13,9 +13,8 @@
                     padding: 20px;
                     position: sticky;
                     top: 100px;
-                        display: flex
-;
-    justify-content: center;
+                    display: flex;
+                    justify-content: center;
                 }
 
                 .product-filters ul {
@@ -108,16 +107,44 @@
                 <div class="col-lg-12 text-center">
                     <div class="pagination-wrap">
                         <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a class="active" href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">Next</a></li>
+                            @if ($products->currentPage() > 1)
+                                <li><a href="{{ $products->url(1) }}" title="First">&laquo;</a></li>
+                            @endif
+                            @if ($products->onFirstPage())
+                                <li class="disabled"><span>Prev</span></li>
+                            @else
+                                <li><a href="{{ $products->previousPageUrl() }}">Prev</a></li>
+                            @endif
+                            @php
+                                $pagesToShow = 4;
+                                $start = $products->currentPage() - floor($pagesToShow / 2);
+                                if ($start < 1) {
+                                    $start = 1;
+                                }
+                                $end = $start + $pagesToShow - 1;
+                                if ($end > $products->lastPage()) {
+                                    $end = $products->lastPage();
+                                    $start = max($end - $pagesToShow + 1, 1);
+                                }
+                            @endphp
+                            @for ($i = $start; $i <= $end; $i++)
+                                <li>
+                                    <a class="{{ $i == $products->currentPage() ? 'active' : '' }}"
+                                        href="{{ $products->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
+                            @if ($products->hasMorePages())
+                                <li><a href="{{ $products->nextPageUrl() }}">Next</a></li>
+                            @else
+                                <li class="disabled"><span>Next</span></li>
+                            @endif
+                            @if ($products->currentPage() < $products->lastPage())
+                                <li><a href="{{ $products->url($products->lastPage()) }}" title="Last">&raquo;</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- end products -->
-@endsection
+
+            <!-- end products -->
+        @endsection

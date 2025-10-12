@@ -12,9 +12,9 @@ class CartController extends Controller
         $carts=Cart::with('product')->where('user_id',$user_id)->get();
         $cartCount = \App\Models\Cart::where('user_id', auth()->id())->sum('quantity');
 
-        return view('products.cart',['carts'=>$carts, 'cartCount' => $cartCount]);
+        return view('products.cart',['carts'=>$carts, /* 'cartCount' => $cartCount */]);
     }
-    
+
     public function AddToCart($pro_id){
         $user_id=auth()->user()->id;
         $cart=Cart::where('user_id',$user_id)->where('product_id',$pro_id)->first();

@@ -44,7 +44,9 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         if ($request->hasFile('image_path')) {
             $image = $request->file('image_path');
-            $path = $image->store('products', );
+            $path = $image->store('products', [
+                'disk' => 'public',
+            ]);
             $product->image_path = 'storage/' . $path;
         }
         $product->save();
@@ -106,7 +108,9 @@ class ProductController extends Controller
                 unlink(public_path($product->image_path));
             }
             $image = $request->file('image_path');
-            $path = $image->store('products', 'public');
+            $path = $image->store('products', [
+                'disk' => 'public',
+            ]);
             $product->image_path = 'storage/' . $path;
         }
         $product->save();
@@ -133,6 +137,13 @@ class ProductController extends Controller
             Product::where('id', '=', $pro_id)->delete();
         }
         return redirect('/product');
+    }
+
+
+    public function ProductTable()
+    {
+        $products = Product::all();
+        return view('products.producttable', ['products' => $products]);
     }
 
 

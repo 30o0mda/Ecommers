@@ -131,9 +131,7 @@
                                     <div class="header-icons">
                                         <a href="{{ url('/cart') }}" class="cart-icon">
                                             <i class="fas fa-shopping-cart"></i>
-                                            @if (isset($cartCount) && $cartCount > 0)
-                                                <span class="cart-count">{{ $cartCount }}</span>
-                                            @endif
+                                            <span class="cart-count">{{ $cartCount }}</span>
                                         </a>
                                         <a class="mobile-hide search-bar-icon" href="#"><i
                                                 class="fas fa-search"></i></a>

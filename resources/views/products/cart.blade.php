@@ -27,11 +27,20 @@
                                             <img src="{{ asset($cart->product->image_path) }}" alt=""
                                                 style="width: 100px; height: auto;">
                                         </td>
-                                        <td class="product-name">{{ $cart->product->name }}</td>
+                                        <td class="product-name">
+                                            <a href="{{ url('/showproduct/' . $cart->product->id) }}' }}">
+                                                {{ $cart->product->name }}
+                                            </a>
+                                        </td>
                                         <td class="product-price">${{ number_format($cart->product->price, 2) }}</td>
                                         <td class="product-quantity">
-                                            <input type="number" class="quantity-input" value="{{ $cart->quantity }}"
-                                                min="1" data-id="{{ $cart->id }}">
+                                            <form method="POST" action="/updatecart/{{ $cart->id }}">
+                                                @csrf
+                                                <input type="number" class="quantity-input" name="quantity" value="{{ $cart->quantity }}"
+                                                    min="1" data-id="{{ $cart->id }}">
+                                                    <input type="hidden" name="cart_id" value="{{ $cart->id }}">
+                                                    <button type="submit">Update</button>
+                                                </form>
                                         </td>
                                         <td class="product-total">
                                             ${{ number_format($cart->product->price * $cart->quantity, 2) }}</td>
@@ -60,7 +69,8 @@
                             </tbody>
                         </table>
                         <div class="cart-buttons">
-                            <a href="checkout.html" class="boxed-btn black">Check Out</a>
+                            <a href="/completeorder" class="boxed-btn black">Check Out</a>
+                            <a href="/myorders" class="boxed-btn black">My Orders</a>
                         </div>
                     </div>
 

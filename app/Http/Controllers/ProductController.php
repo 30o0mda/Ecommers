@@ -56,13 +56,18 @@ class ProductController extends Controller
     public function ShowProduct($pro_id)
     {
         if ($pro_id) {
-            $product = Product::find($pro_id);
+            $product = Product::with('category', 'images')->find($pro_id);
+            $relatedProducts = Product::where('category_id', $product->category_id)
+                ->where('id', '!=', $product->id)
+                ->inRandomOrder()
+                ->take(3)
+                ->get();
             if ($product) {
                 $category = $product->category;
-                 // assuming relation exists
                 return view('products.showproduct', [
                     'product' => $product,
-                    'category' => $category
+                    'category' => $category,
+                    'relatedProducts' => $relatedProducts,
                 ]);
             } else {
                 return redirect('/product')->with('error', 'Product not found.');
@@ -122,7 +127,6 @@ class ProductController extends Controller
     {
         $search = $request->input('search');
         $result = Product::where('name', 'LIKE', '%' . $search . '%')->paginate(10);
-        // dd($result);
         if ($result->isEmpty()) {
             return redirect()->route('product')->with('error', 'No products found matching your search criteria.');
         } else {

@@ -55,7 +55,10 @@ Route::get('/removeproductimage/{img_id?}',[ProductController::class,'RemoveProd
 Route::get('/cart',[CartController::class,'CartPage'] )->middleware('auth');
 Route::get('/addtocart/{pro_id}',[CartController::class,'AddToCart'] )->middleware('auth');
 Route::get('/removecart/{cart_id?}',[CartController::class,'RemoveCart'] )->middleware('auth');
-Route::post('/updatecart',[CartController::class,'UpdateCart'] )->middleware('auth');
+Route::post('/updatecart/{cart_id}',[CartController::class,'UpdateCart'] )->middleware('auth');
+Route::get('/completeorder',[CartController::class,'CompleteOrder'] )->middleware('auth');
+Route::post('/storeorder',[CartController::class,'StoreOrder'] )->middleware('auth');
+Route::get('/myorders',[CartController::class,'MyOrders'] )->middleware('auth');
 //reviews
 Route::get('/reviews',[ReviewController::class,'AllReviews'] );
 Route::post('/storereview',[ReviewController::class,'StoreReview'] );

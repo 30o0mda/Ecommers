@@ -50,6 +50,7 @@
                                     href="{{ url('/showproduct/' . $product->id) }}" class="btn btn-info"><i
                                         class="fas fa-eye"></i> View</a>
                             </p>
+                            
                             <a href="{{ url('/addtocart/' . $product->id) }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </div>
                     </div>
@@ -59,7 +60,7 @@
     </div>
     </div>
     </div>
-    
+
     <div class="row">
         <div class="col-lg-12 text-center">
             <div class="pagination-wrap">

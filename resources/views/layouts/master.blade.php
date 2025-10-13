@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
         content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
     <!-- title -->
     <title>Fruitkha - Slider Version</title>
@@ -131,8 +132,11 @@
                                     <div class="header-icons">
                                         <a href="{{ url('/cart') }}" class="cart-icon">
                                             <i class="fas fa-shopping-cart"></i>
-                                            <span class="cart-count">{{ $cartCount }}</span>
-                                        </a>
+                                            @if ($cartCount !== null && $cartCount > 0)
+                                                <span class="cart-count">{{ $cartCount }}</span>
+                                                @endif
+                                            </a>
+
                                         <a class="mobile-hide search-bar-icon" href="#"><i
                                                 class="fas fa-search"></i></a>
                                     </div>

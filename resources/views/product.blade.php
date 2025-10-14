@@ -40,7 +40,7 @@
                                         alt="" style="height: 200px;width: 200px">
                                 </a>
                             </div>
-                            <h3>{{ $product->name }}</h3>
+                            <h3>{{ session('locale') == 'ar' ? $product->name : $product->name_en }}</h3>
                             <p class="product-price"><span>{{ $product->quantity }}</span> {{ $product->price }} $ </p>
                             <p class="mt-3">
                                 <a href="{{ url('/removeproduct/' . $product->id) }}" class="btn btn-danger"><i

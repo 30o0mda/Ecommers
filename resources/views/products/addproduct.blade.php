@@ -37,8 +37,14 @@
                                 </table>
                             @endif
                             <p>
+                                <label for="image_path">الاسم :</label>
                                 <input type="text" style="width: 100%" required placeholder="Name" name="name"
                                     id="name" value="{{ old('name') }}">
+                            </p>
+                            <p>
+                                <label for="name_en">الاسم بالانجليزية :</label>
+                                <input type="text" style="width: 100%" required placeholder="Name" name="name_en"
+                                    id="name_en" value="{{ old('name_en') }}">
                             </p>
                             <p style="display: flex">
                                 <input type="file" style="width: 100%" class="form-control" placeholder="Image_path"

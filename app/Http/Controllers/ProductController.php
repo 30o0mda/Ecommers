@@ -30,6 +30,7 @@ class ProductController extends Controller
         // dd($request->all());
         $request->validate([
             'name' => 'required|max:10|unique:products',
+            'name_en' => 'required|max:10|unique:products',
             'price' => 'required',
             'quantity' => 'required',
             'description' => 'required',
@@ -39,6 +40,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->name;
+        $product->name_en = $request->name_en;
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->description = $request->description;
@@ -94,6 +96,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|max:10',
+            'name_en' => 'required|max:10',
             'price' => 'required',
             'quantity' => 'required',
             'description' => 'required',
@@ -104,6 +107,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($request->pro_id);
 
         $product->name = $request->name;
+        $product->name_en = $request->name_en;
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->description = $request->description;

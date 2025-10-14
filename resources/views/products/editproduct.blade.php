@@ -46,8 +46,14 @@
                             </div>
                             </p>
                             <p>
+                                <label for="image_path">الاسم :</label>
                                 <input type="text" style="width: 100%" required placeholder="Name" name="name"
                                     id="name" value="{{ $product->name }}">
+                            </p>
+                            <p>
+                                <label for="image_path">الاسم بالانجليزية :</label>
+                                <input type="text" style="width: 100%" required placeholder="Name" name="name_en"
+                                    id="name_en" value="{{ $product->name_en }}">
                             </p>
                             <p style="display: flex">
                                 <input type="number" style="width: 50%" placeholder="Price" class="mr-4" name="price"

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\DB;
@@ -25,9 +26,12 @@ use function Laravel\Prompts\search;
 |
 */
 
-Route::get('/dashbord',function(){
-    return view('dashbord.test');
-});
+// Route::get('/dashbord',function(){
+//     return view('dashbord.test');
+// });
+
+//language
+Route::get('/lang/{locale}',[LangController::class,'SetLang'] )->name('lang');
 // Authentication Routes
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');

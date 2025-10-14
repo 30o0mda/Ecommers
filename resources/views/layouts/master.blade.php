@@ -47,6 +47,12 @@
     }
 </style>
 
+
+
+
+
+
+
 </head>
 
 <body>
@@ -72,14 +78,12 @@
                             </a>
                         </div>
                         <!-- logo -->
-
                         <!-- menu start -->
                         <nav class="main-menu" dir="rtl">
                             <ul>
                                 <li class="current-list-item"><a href="/">الرئيسيه</a>
-
                                 </li>
-                                <li><a href="/product">المنتجات</a></li>
+                                <li><a href="/product">{{ __('main.products') }}</a></li>
                                 <li><a href="/category">الاقسام</a></li>
                                 <li><a href="/addproduct">اضافه منتج</a></li>
                                 <li><a href="/reviews">اراء العملاء</a></li>
@@ -127,16 +131,45 @@
                                         </div>
                                     </li>
                                 @endguest
-
                                 <li>
                                     <div class="header-icons">
+                                        <!-- Language Dropdown -->
+                                        <div class="dropdown d-inline-block ms-2 position-relative">
+                                            <a class="nav-link p-0" href="#" id="languageDropdown"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                                @if (app()->getLocale() == 'ar')
+                                                    <img src="https://flagcdn.com/w20/eg.png" width="24"
+                                                        alt="العربية" class="lang-flag">
+                                                @elseif(app()->getLocale() == 'fr')
+                                                    <img src="https://flagcdn.com/w20/fr.png" width="24"
+                                                        alt="Français" class="lang-flag">
+                                                @else
+                                                    <img src="https://flagcdn.com/w20/gb.png" width="24"
+                                                        alt="English" class="lang-flag">
+                                                @endif
+                                            </a>
+                                            <ul class="dropdown-menu lang-menu" aria-labelledby="languageDropdown">
+                                                <li><a class="dropdown-item p-0" href="{{ route('lang', 'en') }}">
+                                                        <img src="https://flagcdn.com/w40/gb.png" width="24"
+                                                            alt="English" class="lang-flag">
+                                                    </a></li>
+                                                <li><a class="dropdown-item p-0" href="{{ route('lang', 'ar') }}">
+                                                        <img src="https://flagcdn.com/w40/eg.png" width="24"
+                                                            alt="العربية" class="lang-flag">
+                                                    </a></li>
+                                                <li><a class="dropdown-item p-0" href="{{ route('lang', 'fr') }}">
+                                                        <img src="https://flagcdn.com/w40/fr.png" width="24"
+                                                            alt="Français" class="lang-flag">
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Language Dropdown -->
                                         <a href="{{ url('/cart') }}" class="cart-icon">
                                             <i class="fas fa-shopping-cart"></i>
                                             @if ($cartCount !== null && $cartCount > 0)
                                                 <span class="cart-count">{{ $cartCount }}</span>
-                                                @endif
-                                            </a>
-
+                                            @endif
+                                        </a>
                                         <a class="mobile-hide search-bar-icon" href="#"><i
                                                 class="fas fa-search"></i></a>
                                     </div>
@@ -340,6 +373,7 @@
     <script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
     <script src="{{ asset('assets/js/sticker.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
 
 
 

@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+class LangController extends Controller
+{
+    public function SetLang($locale)
+    {
+        $availableLocales = ['en', 'ar', 'fr'];
+
+    if (in_array($locale, $availableLocales)) {
+        Session::put('locale', $locale);
+    }
+
+    return redirect()->back();
+    }
+}

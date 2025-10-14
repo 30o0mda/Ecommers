@@ -1,4 +1,11 @@
-/*Template Name: Fruitkha - Responsive Bootstrap4 Shop TemplateTemplate URI: Description: Bootstrap template for fruits or any other kind of shopAuthor: Imran HossainAuthor URI: https://imransdesign.com/Version: 1.0*/
+/*
+Template Name: Fruitkha - Responsive Bootstrap4 Shop Template
+Template URI: 
+Description: Bootstrap template for fruits or any other kind of shop
+Author: Imran Hossain
+Author URI: https://imransdesign.com/
+Version: 1.0
+*/
 /* -----------------------------------------------------------------------------
 
 # Base - Genral & Typography
@@ -2748,3 +2755,99 @@ table.order-details tbody td {
   vertical-align: middle;
   width: 100%;
 }
+/* -----------------------------------------------------------------------------
+
+# language Selector Styles
+
+----------------------------------------------------------------------------- */
+/* شكل العلم الرئيسي */
+.lang-flag {
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lang-flag:hover {
+    transform: scale(1.1);
+}
+
+/* القائمة المنسدلة بدون بوكس */
+.lang-menu {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    min-width: auto;
+    padding: 0;
+    margin-top: 6px;
+}
+
+.lang-menu .dropdown-item {
+    background: transparent !important;
+    border: none;
+    padding: 2px 0;
+    text-align: center;
+}
+
+.lang-menu .dropdown-item:hover {
+    background: transparent !important;
+}
+
+.lang-menu img {
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.lang-menu img:hover {
+    transform: scale(1.15);
+}
+
+
+
+
+
+
+
+
+
+/* -----------------------------------------------------------------------------
+/* شكل العلم الرئيسي */
+.lang-flag {
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lang-flag:hover {
+    transform: scale(1.1);
+}
+
+/* القائمة المنسدلة بدون بوكس */
+.lang-menu {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    min-width: auto;
+    padding: 0;
+    margin-top: 6px;
+}
+
+.lang-menu .dropdown-item {
+    background: transparent !important;
+    border: none;
+    padding: 2px 0;
+    text-align: center;
+}
+
+.lang-menu .dropdown-item:hover {
+    background: transparent !important;
+}
+
+.lang-menu img {
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.lang-menu img:hover {
+    transform: scale(1.15);
+}
+

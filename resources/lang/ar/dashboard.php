@@ -1,0 +1,16 @@
+<?php return [
+    'products' => 'المنتجات',
+    'wallet' => 'المحفظة',
+    'app_settings' => 'إعدادات التطبيق',
+    'settings' => 'الإعدادات',
+    'notifications' => 'الإشعارات',
+    'logout' => 'تسجيل الخروج',
+    'profile' => 'الملف الشخصي',
+    'categories' => 'الاقسام',
+    'add_category' => 'إضافة فئة',
+    'category_name' => 'اسم الفئة',
+    'category_name_en' => 'اسم الفئة بالإنجليزية',
+    'actions' => 'الإجراءات',
+    'edit' => 'تعديل',
+    'delete' => 'حذف',
+]; ?>

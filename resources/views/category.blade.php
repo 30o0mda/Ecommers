@@ -89,12 +89,6 @@
                                     <p class="product-price"><span> Quantity </span> {{ $product->quantity }}$ </p>
                                     <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to
                                         Cart</a>
-                                    <p class="mt-3">
-                                        <a href="{{ url('/removeproduct/' . $product->id) }}" class="btn btn-danger"><i
-                                                class="fas fa-trash"></i> Delete</a>
-                                        <a href="{{ url('/editproduct/' . $product->id) }}" class="btn btn-info"><i
-                                                class="fas fa-edit"></i> Edit</a>
-                                    </p>
                                 </div>
                             </div>
                         @endforeach

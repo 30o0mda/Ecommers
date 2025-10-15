@@ -26,10 +26,6 @@ use function Laravel\Prompts\search;
 |
 */
 
-// Route::get('/dashbord',function(){
-//     return view('dashbord.test');
-// });
-
 //language
 Route::get('/lang/{locale}',[LangController::class,'SetLang'] )->name('lang');
 // Authentication Routes
@@ -42,19 +38,12 @@ Route::get('/category', [FirstController::class,'GetAllCategoriesWithProduct']);
 
 // product and addproduct and story
 Route::get('/product/{cat_id?}',[ProductController::class,'Products'] )->name('product');
-Route::get('/addproduct',[ProductController::class,'AddProduct']);
-Route::post('/storeproduct',[ProductController::class,'StoreProduct']);
-Route::get('/showproduct/{pro_id}',[ProductController::class,'ShowProduct'])->name('showproduct');
-Route::post('/updateproduct',[ProductController::class,'UpdateProduct']);
-Route::get('/editproduct/{pro_id?}',[ProductController::class,'EditProduct']);
+Route::get('/showproduct/{pro_id}',[ProductController::class,'ShowProduct']);
 Route::post('/search',[ProductController::class,'SearchProduct']);
-Route::get('/removeproduct/{pro_id?}',[ProductController::class,'RemoveProduct']);
+
 
 //product table
-Route::get('/producttable',[ProductController::class,'ProductTable'] );
-Route::get('/addimagetoproduct/{pro_id?}',[ProductController::class,'AddImageToProduct'] );
-Route::post('/storeproductimage',[ProductController::class,'StoreProductImage'] );
-Route::get('/removeproductimage/{img_id?}',[ProductController::class,'RemoveProductImage'] );
+
 // cart
 Route::get('/cart',[CartController::class,'CartPage'] )->middleware('auth');
 Route::get('/addtocart/{pro_id}',[CartController::class,'AddToCart'] )->middleware('auth');

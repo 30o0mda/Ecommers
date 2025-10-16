@@ -1,5 +1,12 @@
 @extends('layouts.master')
 @section('content')
+
+
+@if(session('coupon'))
+    <p>كود الكوبون: {{ session('coupon') }}</p>
+    <p>الخصم: {{ session('discount') }} $</p>
+@endif
+
     <div class="cart-section mt-150 mb-150">
         <div class="container">
             <div class="row">
@@ -36,11 +43,12 @@
                                         <td class="product-quantity">
                                             <form method="POST" action="/updatecart/{{ $cart->id }}">
                                                 @csrf
-                                                <input type="number" class="quantity-input" name="quantity" value="{{ $cart->quantity }}"
-                                                    min="1" data-id="{{ $cart->id }}">
-                                                    <input type="hidden" name="cart_id" value="{{ $cart->id }}">
-                                                    <button type="submit">Update</button>
-                                                </form>
+                                                <input type="number" class="quantity-input" name="quantity"
+                                                    value="{{ $cart->quantity }}" min="1"
+                                                    data-id="{{ $cart->id }}">
+                                                <input type="hidden" name="cart_id" value="{{ $cart->id }}">
+                                                <button type="submit">Update</button>
+                                            </form>
                                         </td>
                                         <td class="product-total">
                                             ${{ number_format($cart->product->price * $cart->quantity, 2) }}</td>
@@ -68,53 +76,62 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="coupon-section">
+                            <h3>Apply Coupon</h3>
+                            <div class="coupon-form-wrap">
+                                <form action="{{ route('apply.coupons') }}" method="POST }}">
+                                    <p><input type="text" placeholder="Coupon"  name="code"></p>
+                                    <button type="submit"> apply</button>
+                                </form>
+                            </div>
+                        </div>
                         <div class="cart-buttons">
                             <a href="/completeorder" class="boxed-btn black">Check Out</a>
                             <a href="/myorders" class="boxed-btn black">My Orders</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-	<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const quantityInputs = document.querySelectorAll('.quantity-input');
-    function onQuantityChange(e) {
-        const input = e.target;
-        const row = input.closest('tr');
-        if (!row) return;
-        const price = parseFloat(row.dataset.price) || 0;
-        let quantity = parseInt(input.value, 10);
-        if (isNaN(quantity) || quantity < 1) {
-            quantity = 1;
-            input.value = 1;
-        }
-        const productTotal = price * quantity;
-        const totalCell = row.querySelector('.product-total');
-        if (totalCell) {
-            totalCell.textContent = `$${productTotal.toFixed(2)}`;
-        }
-        updateGrandTotal();
-    }
-    quantityInputs.forEach(input => {
-        input.addEventListener('input', onQuantityChange);
-        input.addEventListener('change', onQuantityChange);
-    });
-    function updateGrandTotal() {
-        let grandTotal = 0;
-        document.querySelectorAll('.product-total').forEach(cell => {
-            const num = parseFloat(cell.textContent.replace(/[^0-9.]/g, '')) || 0;
-            grandTotal += num;
-        });
-        const grandEl = document.getElementById('grand-total');
-        if (grandEl) {
-            grandEl.textContent = `$${grandTotal.toFixed(2)}`;
-        }
-    }
-    updateGrandTotal();
-});
-</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInputs = document.querySelectorAll('.quantity-input');
 
+            function onQuantityChange(e) {
+                const input = e.target;
+                const row = input.closest('tr');
+                if (!row) return;
+                const price = parseFloat(row.dataset.price) || 0;
+                let quantity = parseInt(input.value, 10);
+                if (isNaN(quantity) || quantity < 1) {
+                    quantity = 1;
+                    input.value = 1;
+                }
+                const productTotal = price * quantity;
+                const totalCell = row.querySelector('.product-total');
+                if (totalCell) {
+                    totalCell.textContent = `$${productTotal.toFixed(2)}`;
+                }
+                updateGrandTotal();
+            }
+            quantityInputs.forEach(input => {
+                input.addEventListener('input', onQuantityChange);
+                input.addEventListener('change', onQuantityChange);
+            });
+
+            function updateGrandTotal() {
+                let grandTotal = 0;
+                document.querySelectorAll('.product-total').forEach(cell => {
+                    const num = parseFloat(cell.textContent.replace(/[^0-9.]/g, '')) || 0;
+                    grandTotal += num;
+                });
+                const grandEl = document.getElementById('grand-total');
+                if (grandEl) {
+                    grandEl.textContent = `$${grandTotal.toFixed(2)}`;
+                }
+            }
+            updateGrandTotal();
+        });
+    </script>
 @endsection

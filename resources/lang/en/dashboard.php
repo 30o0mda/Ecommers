@@ -13,5 +13,6 @@
     'actions' => 'Actions',
     'edit' => 'Edit',
     'delete' => 'Delete',
-    
+    'coupons' => 'Coupons',
+
 ]; ?>

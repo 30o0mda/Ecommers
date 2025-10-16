@@ -13,4 +13,12 @@
     'actions' => 'الإجراءات',
     'edit' => 'تعديل',
     'delete' => 'حذف',
+    'add_product' => 'إضافة منتج',
+    'product_name' => 'اسم المنتج',
+    'product_name_en' => 'اسم المنتج بالإنجليزية',
+    'product_price' => 'سعر المنتج',
+    'product_image' => 'صورة المنتج',
+    'product_description' => 'وصف المنتج',
+    'product_description_en' => 'وصف المنتج بالإنجليزية',
+    'coupons' => 'الكوبونات',
 ]; ?>

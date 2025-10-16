@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
@@ -26,6 +27,10 @@ use function Laravel\Prompts\search;
 Route::prefix('admin')->group(function () {
     Route::get('/users', [UserController::class, 'User'])->name('users.index');
     Route::get('/users/{id}', [UserController::class, 'Show'])->name('users.show');
+    Route::get('/edituser/{id}', [UserController::class, 'EditUser'])->name('users.edit');
+    Route::post('/updateuser/{id}', [UserController::class, 'UpdateUser'])->name('users.update');
+    Route::delete('/removeuser/{id}', [UserController::class, 'DeleteUser'])->name('users.delete');
+
 
 });
 
@@ -49,10 +54,18 @@ Route::get('/categorytable',[CategoryController::class,'CategoryTable'])->name('
 Route::get('/addcategory',[CategoryController::class,'AddCategory'])->name('admin.addcategory');
 Route::get('/editcategory/{cat_id?}',[CategoryController::class,'EditCategory'])->name('admin.editcategory');
 Route::get('/showcategory/{cat_id}', [CategoryController::class, 'ShowCategory'])->name('admin.showcategory');
-
 Route::post('/updatecategory/{cat_id}',[CategoryController::class,'UpdateCategory'])->name('admin.updatecategory');
 Route::delete('/removecategory/{cat_id?}',[CategoryController::class,'RemoveCategory'])->name('admin.removecategory');
 Route::post('/storecategory',[CategoryController::class,'StoreCategory'])->name('admin.storecategory');
+
+//coupon table
+Route::get('/coupontable',[CouponController::class,'CouponTable'])->name('admin.coupontable');
+Route::get('/addcoupon',[CouponController::class,'AddCoupon'])->name('admin.addcoupon');
+Route::get('/editcoupon/{coupon_id?}',[CouponController::class,'EditCoupon'])->name('admin.editcoupon');
+Route::get('/showcoupon/{coupon_id}', [CouponController::class, 'ShowCoupon'])->name('admin.showcoupon');
+Route::PUT('/updatecoupon/{coupon_id}',[CouponController::class,'UpdateCoupon'])->name('admin.updatecoupon');
+Route::delete('/removecoupon/{coupon_id?}',[CouponController::class,'RemoveCoupon'])->name('admin.removecoupon');
+Route::post('/storecoupon',[CouponController::class,'StoreCoupon'])->name('admin.storecoupon');
 
 
 

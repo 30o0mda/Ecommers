@@ -52,9 +52,14 @@ Route::post('/updatecart/{cart_id}',[CartController::class,'UpdateCart'] )->midd
 Route::get('/completeorder',[CartController::class,'CompleteOrder'] )->middleware('auth');
 Route::post('/storeorder',[CartController::class,'StoreOrder'] )->middleware('auth');
 Route::get('/myorders',[CartController::class,'MyOrders'] )->middleware('auth');
+route::get('/coupons',[FirstController::class,'Coupons'])->middleware('auth')->name('apply.coupons');
+
 //reviews
 Route::get('/reviews',[ReviewController::class,'AllReviews'] );
 Route::post('/storereview',[ReviewController::class,'StoreReview'] );
+
+
+
 
 
 

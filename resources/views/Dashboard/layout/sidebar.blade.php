@@ -32,12 +32,12 @@
                         <span>كل المنتجات</span>
                     </a>
                 </li>
-                <li class="w-100">
+                {{-- <li class="w-100">
                     <a href="{{ url('/addproduct') }}" class="nav-link px-0">
                         <i class="fa-solid fa-plus"></i>
                         <span>إضافة منتج</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
 
@@ -54,15 +54,37 @@
                         <span>كل الأقسام</span>
                     </a>
                 </li>
-                <li class="w-100">
+                {{-- <li class="w-100">
                     <a href="{{ url('/addcategory') }}" class="nav-link px-0">
                         <i class="fa-solid fa-plus"></i>
                         <span>إضافة قسم</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
 
+
+        <!-- قسم الكوبونات -->
+        <li class="nav-item dropdown">
+            <a href="#productsSubmenu" data-bs-toggle="collapse" class="nav-link align-middle" aria-expanded="false">
+                <i class="fa-solid fa-box-open ico"></i>
+                <span>{{ __('dashboard.coupons') }}</span>
+            </a>
+            <ul class="collapse nav flex-column ms-1" id="productsSubmenu" data-bs-parent="#menu">
+                <li class="w-100">
+                    <a href="{{ url('/coupontable') }}" class="nav-link px-0">
+                        <i class="fa-solid fa-cube"></i>
+                        <span>كل الكوبونات</span>
+                    </a>
+                </li>
+                {{-- <li class="w-100">
+                    <a href="{{ url('/addcoupon') }}" class="nav-link px-0">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>إضافة كوبون</span>
+                    </a>
+                </li> --}}
+            </ul>
+        </li>
     </ul>
 </section>
 <!-- ======= End Sidebar ======= -->

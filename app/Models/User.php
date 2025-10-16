@@ -3,6 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UserRoleEnum as EnumsUserRoleEnum;
+use App\Http\Enums\UserIsBlockEnum;
+use App\Http\Enums\UserRoleEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +25,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'role',
+        'is_blocked',
+        'status',
+        'address',
     ];
 
     /**
@@ -39,6 +48,8 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+        'role' => UserRoleEnum::class,
+        'is_blocked' => UserIsBlockEnum::class,
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];

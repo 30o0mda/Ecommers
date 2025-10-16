@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Support\Facades\Request as FacadesRequest;
+
+
 
 class UserController extends Controller
 {
@@ -25,20 +24,27 @@ class UserController extends Controller
         return view('Dashboard.users.show', compact('user'));
     }
 
-    public function Edit($id)
+    public function EditUser($id)
     {
         $user = User::findOrFail($id);
-        return view('Dashboard.users.edit', compact('user'));
+        return view('Dashboard.users.edituser', compact('user'));
     }
 
-    public function Update(Request $request, $id)
+    public function UpdateUser(Request $request, $id)
     {
+        $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'phone' => 'nullable',
+        'role' => 'required',
+        'is_blocked' => 'required|boolean',
+    ]);
         $user = User::findOrFail($id);
         $user->update($request->all());
         return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
 
-    public function Delete($id)
+    public function DeleteUser($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
